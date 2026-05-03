@@ -1,0 +1,320 @@
+<html>
+<head>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #faf8f5; color: #2c2c2a; }
+
+header {
+  background: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 0.5px solid #e8e6e0;
+}
+
+.logo { font-size: 18px; font-weight: 600; color: #d85a30; }
+nav a { color: #5f5e5a; text-decoration: none; font-size: 14px; margin-left: 2rem; }
+nav a:hover { color: #d85a30; }
+
+.section { padding: 3rem 2rem; max-width: 900px; margin: 0 auto; }
+.section h1 { font-size: 36px; font-weight: 700; margin-bottom: 2rem; color: #2c2c2a; }
+.section h2 { font-size: 24px; font-weight: 700; margin: 2rem 0 1rem; color: #2c2c2a; }
+.section p { font-size: 15px; color: #5f5e5a; line-height: 1.8; margin-bottom: 1rem; }
+
+.founder-story {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  border: 0.5px solid #e8e6e0;
+  margin: 2rem 0;
+}
+
+.founder-story h3 { font-size: 18px; font-weight: 600; color: #d85a30; margin-bottom: 1rem; }
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.value-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 0.5px solid #e8e6e0;
+  text-align: center;
+}
+
+.value-card h4 { font-size: 16px; font-weight: 600; color: #d85a30; margin-bottom: 0.75rem; }
+.value-card p { font-size: 13px; color: #5f5e5a; margin: 0; }
+
+.contact-form {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  border: 0.5px solid #e8e6e0;
+  max-width: 600px;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #2c2c2a;
+  margin-bottom: 0.5rem;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 0.5px solid #e8e6e0;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: #d85a30;
+  background: #faf8f5;
+}
+
+textarea { resize: vertical; min-height: 120px; }
+
+button {
+  background: #d85a30;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+button:hover {
+  background: #c24820;
+  transform: translateY(-2px);
+}
+
+.contact-info {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.info-block {
+  background: #faf3f0;
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+.info-block h4 { font-size: 14px; font-weight: 600; color: #d85a30; margin-bottom: 0.5rem; }
+.info-block p { font-size: 13px; color: #5f5e5a; margin: 0; }
+
+.success-message {
+  display: none;
+  background: #d5e8d4;
+  color: #085041;
+  padding: 1rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  border: 0.5px solid #82b366;
+}
+
+footer {
+  background: white;
+  padding: 2rem;
+  text-align: center;
+  font-size: 12px;
+  color: #888780;
+  border-top: 0.5px solid #e8e6e0;
+  margin-top: 3rem;
+}
+
+.tab-nav {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  border-bottom: 0.5px solid #e8e6e0;
+  padding-bottom: 1rem;
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  color: #5f5e5a;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s;
+}
+
+.tab-btn.active {
+  color: #d85a30;
+  border-bottom: 2px solid #d85a30;
+  padding-bottom: 1rem;
+  margin-bottom: -1rem;
+}
+
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+@media (max-width: 768px) {
+  .values-grid { grid-template-columns: 1fr; }
+  .contact-info { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">KinCare Connect</div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#families">For Families</a>
+    <a href="#childminders">For Childminders</a>
+  </nav>
+</header>
+
+<div class="section">
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab(event, 'about')">About Us</button>
+    <button class="tab-btn" onclick="switchTab(event, 'contact')">Contact</button>
+  </div>
+
+  <div id="about" class="tab-content active">
+    <h1>Our Story</h1>
+    <div class="founder-story">
+      <h3>Why We Started KinCare Connect</h3>
+      <p>
+        As a Nigerian single mother navigating the UK childcare system, I faced a challenge that many African families experience: finding childcare that reflected my cultural values, language, and parenting philosophy.
+      </p>
+      <p>
+        I spent weeks scrolling through generic platforms that offered no way to filter by language, culture, or shared values. I interviewed dozens of childminders, many wonderful, but none who shared my background or understood the nuances of raising a child in the African diaspora.
+      </p>
+      <p>
+        That's when it became clear: there was a gap in the market, and more importantly, a gap in the community's access to culturally-aligned childcare. KinCare Connect exists to fill that gap.
+      </p>
+    </div>
+
+    <h2>Our Mission</h2>
+    <p>
+      To empower African diaspora families with culturally-matched, trustworthy childcare — and to help childminders build thriving businesses within their communities.
+    </p>
+
+    <h2>Our Values</h2>
+    <div class="values-grid">
+      <div class="value-card">
+        <h4>🤝 Community First</h4>
+        <p>We build for real families, by someone who lives the reality.</p>
+      </div>
+      <div class="value-card">
+        <h4>🔒 Trust & Safety</h4>
+        <p>Every provider is verified. Safety is non-negotiable.</p>
+      </div>
+      <div class="value-card">
+        <h4>🌍 Culturally Conscious</h4>
+        <p>Culture isn't a filter. It's the foundation.</p>
+      </div>
+    </div>
+
+    <h2>The Team</h2>
+    <p>
+      KinCare Connect is founded and led by Lubna [Surname], an MSc holder in International Business with over 5 years of experience in school administration and community engagement in the UK. She is supported by a growing network of advisors in childcare, tech, and African diaspora communities.
+    </p>
+  </div>
+
+  <div id="contact" class="tab-content">
+    <h1>Get In Touch</h1>
+    <p>Have a question? We'd love to hear from you. Get in touch using the form below or email us directly.</p>
+
+    <div class="contact-form">
+      <div class="success-message" id="successMsg">Thank you! We'll get back to you within 48 hours.</div>
+      <form onsubmit="handleContactForm(event)">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <input type="text" id="subject" name="subject" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+
+    <div class="contact-info">
+      <div class="info-block">
+        <h4>Email</h4>
+        <p><a href="mailto:hello@kincare-connect.co.uk" style="color: #d85a30; text-decoration: none;">hello@kincare-connect.co.uk</a></p>
+      </div>
+      <div class="info-block">
+        <h4>Location</h4>
+        <p>Birmingham, United Kingdom</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2026 KinCare Connect Ltd. | Building community, one family at a time.</p>
+</footer>
+
+<script>
+function switchTab(e, tabName) {
+  e.preventDefault();
+  
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  
+  document.getElementById(tabName).classList.add('active');
+  e.target.classList.add('active');
+}
+
+function handleContactForm(e) {
+  e.preventDefault();
+  const successMsg = document.getElementById('successMsg');
+  successMsg.style.display = 'block';
+  
+  const form = e.target;
+  const data = {
+    name: form.name.value,
+    email: form.email.value,
+    subject: form.subject.value,
+    message: form.message.value,
+    timestamp: new Date().toLocaleString()
+  };
+  
+  // Save to localStorage (we'll show admin dashboard next)
+  let contacts = JSON.parse(localStorage.getItem('kincare_contacts') || '[]');
+  contacts.push(data);
+  localStorage.setItem('kincare_contacts', JSON.stringify(contacts));
+  
+  form.reset();
+  setTimeout(() => {
+    successMsg.style.display = 'none';
+  }, 4000);
+}
+</script>
+
+</body>
+</html>

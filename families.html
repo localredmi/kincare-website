@@ -1,0 +1,351 @@
+<html>
+<head>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #faf8f5; color: #2c2c2a; }
+
+header {
+  background: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 0.5px solid #e8e6e0;
+}
+
+.logo { font-size: 18px; font-weight: 600; color: #d85a30; }
+
+nav a { color: #5f5e5a; text-decoration: none; font-size: 14px; margin-left: 2rem; }
+nav a:hover { color: #d85a30; }
+
+.page-hero {
+  background: linear-gradient(135deg, #fff8f5 0%, #faf8f5 100%);
+  padding: 3rem 2rem;
+  text-align: center;
+  border-bottom: 1px solid #f0e8e0;
+}
+
+.page-hero h1 {
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #2c2c2a;
+}
+
+.page-hero p {
+  font-size: 16px;
+  color: #5f5e5a;
+  margin-bottom: 1rem;
+}
+
+.section {
+  padding: 3rem 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.section h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #2c2c2a;
+}
+
+.problem-section {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  border: 0.5px solid #e8e6e0;
+  margin-bottom: 2rem;
+}
+
+.problem-section h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #d85a30;
+}
+
+.problem-list {
+  list-style: none;
+  padding: 0;
+}
+
+.problem-list li {
+  padding: 0.75rem 0;
+  font-size: 15px;
+  color: #5f5e5a;
+  border-bottom: 0.5px solid #f0e8e0;
+}
+
+.problem-list li:last-child {
+  border-bottom: none;
+}
+
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.process-step {
+  text-align: center;
+}
+
+.step-number {
+  width: 44px;
+  height: 44px;
+  background: #d85a30;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 18px;
+  margin: 0 auto 1rem;
+}
+
+.process-step h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #2c2c2a;
+  margin-bottom: 0.5rem;
+}
+
+.process-step p {
+  font-size: 12px;
+  color: #888780;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.arrow {
+  display: none;
+  font-size: 24px;
+  color: #d85a30;
+  align-self: center;
+  text-align: center;
+}
+
+.faq {
+  margin-top: 3rem;
+}
+
+.faq-item {
+  background: white;
+  border-radius: 8px;
+  border: 0.5px solid #e8e6e0;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.faq-question {
+  padding: 1.25rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  font-size: 14px;
+  color: #2c2c2a;
+  user-select: none;
+  background: white;
+  transition: background 0.2s;
+}
+
+.faq-question:hover {
+  background: #faf3f0;
+}
+
+.faq-toggle {
+  font-size: 18px;
+  color: #d85a30;
+  transition: transform 0.2s;
+}
+
+.faq-answer {
+  display: none;
+  padding: 1rem 1.25rem;
+  border-top: 0.5px solid #f0e8e0;
+  font-size: 14px;
+  color: #5f5e5a;
+  line-height: 1.7;
+  background: #faf8f5;
+}
+
+.faq-answer.active {
+  display: block;
+}
+
+.faq-toggle.active {
+  transform: rotate(180deg);
+}
+
+.cta-section {
+  background: #d85a30;
+  color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.cta-section h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.cta-section p {
+  font-size: 14px;
+  margin-bottom: 1rem;
+  opacity: 0.95;
+}
+
+button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-primary {
+  background: white;
+  color: #d85a30;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+footer {
+  background: white;
+  padding: 2rem;
+  text-align: center;
+  font-size: 12px;
+  color: #888780;
+  border-top: 0.5px solid #e8e6e0;
+  margin-top: 3rem;
+}
+
+@media (max-width: 768px) {
+  .process-grid { grid-template-columns: 1fr; }
+  .arrow { display: none; }
+  .page-hero h1 { font-size: 28px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">KinCare Connect</div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#childminders">For Childminders</a>
+  </nav>
+</header>
+
+<section class="page-hero">
+  <h1>Childcare Built for Your Family</h1>
+  <p>Find providers who understand your culture, speak your language, and share your values.</p>
+</section>
+
+<section class="section">
+  <h2>Why Cultural Match Matters</h2>
+  <div class="problem-section">
+    <h3>The Challenge</h3>
+    <ul class="problem-list">
+      <li><strong>Language</strong> — Your child's first language should be respected and developed</li>
+      <li><strong>Values</strong> — Parenting practices, discipline, and respect mean different things across cultures</li>
+      <li><strong>Food</strong> — Diet preferences, allergies, and cultural meals matter</li>
+      <li><strong>Trust</strong> — You need someone who understands your community and can be part of your family's journey</li>
+    </ul>
+  </div>
+
+  <h2 style="margin-top: 3rem;">How It Works</h2>
+  <div class="process-grid">
+    <div class="process-step">
+      <div class="step-number">1</div>
+      <h4>Create Profile</h4>
+      <p>Tell us about your family, languages, and what matters most.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-number">2</div>
+      <h4>Browse & Filter</h4>
+      <p>Search by language, location, experience, and availability.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-number">3</div>
+      <h4>Connect</h4>
+      <p>Message providers directly through the platform.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-number">4</div>
+      <h4>Book</h4>
+      <p>Arrange childcare and manage everything in one place.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <h2>Frequently Asked Questions</h2>
+    
+    <div class="faq-item">
+      <div class="faq-question" onclick="this.nextElementSibling.classList.toggle('active'); this.querySelector('.faq-toggle').classList.toggle('active');">
+        <span>Is it safe?</span>
+        <span class="faq-toggle">▼</span>
+      </div>
+      <div class="faq-answer">
+        Every childminder on KinCare Connect is registered with Ofsted and holds a current DBS certificate. We verify all credentials before they appear on the platform. You also get community reviews from other families.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="this.nextElementSibling.classList.toggle('active'); this.querySelector('.faq-toggle').classList.toggle('active');">
+        <span>How much does it cost?</span>
+        <span class="faq-toggle">▼</span>
+      </div>
+      <div class="faq-answer">
+        We offer a free tier where you can browse profiles. Our Standard subscription is £9.99/month, giving you full access to messaging and booking. Premium is £16.99/month for priority matching and priority support.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="this.nextElementSibling.classList.toggle('active'); this.querySelector('.faq-toggle').classList.toggle('active');">
+        <span>How do I know the childminder is the right fit?</span>
+        <span class="faq-toggle">▼</span>
+      </div>
+      <div class="faq-answer">
+        You can message providers before booking to ask questions about their experience, language skills, and approach. Many families arrange a trial session first. You also see reviews from other families in the community.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="this.nextElementSibling.classList.toggle('active'); this.querySelector('.faq-toggle').classList.toggle('active');">
+        <span>Can I use this for irregular/flexible hours?</span>
+        <span class="faq-toggle">▼</span>
+      </div>
+      <div class="faq-answer">
+        Yes. Our platform shows each provider's availability, so you can find someone who matches your shift work, weekend childcare, or flexible arrangements.
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-section">
+    <h3>Ready to Find Your Ideal Childminder?</h3>
+    <p>Join our early adopter community and get exclusive benefits.</p>
+    <button class="btn-primary" onclick="alert('Welcome! Check your email for early access details.')">Join the Waitlist</button>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2026 KinCare Connect Ltd. | Childcare built for your family.</p>
+</footer>
+
+</body>
+</html>

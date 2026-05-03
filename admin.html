@@ -1,0 +1,427 @@
+<html>
+<head>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f3f0; color: #2c2c2a; }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+
+header {
+  background: white;
+  padding: 1.5rem 2rem;
+  border-bottom: 0.5px solid #e8e6e0;
+  margin-bottom: 2rem;
+  border-radius: 8px;
+}
+
+header h1 { font-size: 24px; font-weight: 700; color: #d85a30; margin-bottom: 0.5rem; }
+header p { font-size: 14px; color: #888780; }
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 0.5px solid #e8e6e0;
+  text-align: center;
+}
+
+.stat-value { font-size: 32px; font-weight: 700; color: #d85a30; }
+.stat-label { font-size: 12px; color: #888780; margin-top: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px; }
+
+.controls {
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 0.5px solid #e8e6e0;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.controls input {
+  flex: 1;
+  min-width: 200px;
+  padding: 0.5rem 0.75rem;
+  border: 0.5px solid #e8e6e0;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.controls button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-export {
+  background: #d85a30;
+  color: white;
+}
+
+.btn-export:hover {
+  background: #c24820;
+}
+
+.btn-delete {
+  background: #e8e6e0;
+  color: #5f5e5a;
+}
+
+.btn-delete:hover {
+  background: #d3d1c7;
+}
+
+.tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 0.5px solid #e8e6e0;
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  padding: 0.75rem 1rem;
+  font-size: 14px;
+  font-weight: 600;
+  color: #5f5e5a;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+}
+
+.tab-btn.active {
+  color: #d85a30;
+  border-bottom-color: #d85a30;
+}
+
+.table-container {
+  background: white;
+  border-radius: 8px;
+  border: 0.5px solid #e8e6e0;
+  overflow: hidden;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  background: #faf8f5;
+  padding: 1rem;
+  text-align: left;
+  font-size: 12px;
+  font-weight: 600;
+  color: #2c2c2a;
+  border-bottom: 0.5px solid #e8e6e0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+td {
+  padding: 1rem;
+  border-bottom: 0.5px solid #f0e8e0;
+  font-size: 13px;
+}
+
+tr:hover {
+  background: #faf8f5;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.badge-family {
+  background: #e6f1fb;
+  color: #185fa5;
+}
+
+.badge-childminder {
+  background: #fff8f5;
+  color: #d85a30;
+}
+
+.badge-other {
+  background: #f1eee8;
+  color: #5f5e5a;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem;
+  color: #888780;
+}
+
+.empty-state p { font-size: 14px; }
+
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+.action-btn {
+  background: white;
+  border: 0.5px solid #e8e6e0;
+  padding: 0.25rem 0.5rem;
+  border-radius: 3px;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.action-btn:hover {
+  background: #e8e6e0;
+}
+
+.success-message {
+  background: #d5e8d4;
+  color: #085041;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  border: 0.5px solid #82b366;
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .controls { flex-direction: column; align-items: stretch; }
+  table { font-size: 11px; }
+  th, td { padding: 0.75rem 0.5rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>KinCare Connect — Admin Dashboard</h1>
+    <p>Manage signups, contacts, and communications</p>
+  </header>
+
+  <div class="success-message" id="successMsg">Data exported successfully!</div>
+
+  <div class="stats">
+    <div class="stat-card">
+      <div class="stat-value" id="totalWaitlist">0</div>
+      <div class="stat-label">Waitlist Signups</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" id="familyCount">0</div>
+      <div class="stat-label">Families</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" id="childminderCount">0</div>
+      <div class="stat-label">Childminders</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" id="contactCount">0</div>
+      <div class="stat-label">Contact Forms</div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <input type="text" id="searchInput" placeholder="Search by name or email..." onkeyup="filterTable()">
+    <button class="btn-export" onclick="exportToCSV()">📥 Export to CSV</button>
+    <button class="btn-delete" onclick="clearAllData()">🗑️ Clear Data</button>
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchDataTab(event, 'waitlist')">Waitlist Signups</button>
+    <button class="tab-btn" onclick="switchDataTab(event, 'contacts')">Contact Forms</button>
+  </div>
+
+  <div id="waitlist" class="tab-content active">
+    <div class="table-container">
+      <table id="waitlistTable">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Type</th>
+            <th>Location</th>
+            <th>Message</th>
+            <th>Signup Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="waitlistBody">
+          <tr>
+            <td colspan="7" style="text-align: center; padding: 2rem; color: #888780;">No signups yet. They'll appear here.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="contacts" class="tab-content">
+    <div class="table-container">
+      <table id="contactsTable">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Subject</th>
+            <th>Message</th>
+            <th>Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="contactsBody">
+          <tr>
+            <td colspan="6" style="text-align: center; padding: 2rem; color: #888780;">No contact submissions yet.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+function loadAllData() {
+  const waitlist = JSON.parse(localStorage.getItem('kincare_waitlist') || '[]');
+  const contacts = JSON.parse(localStorage.getItem('kincare_contacts') || '[]');
+  
+  // Update stats
+  document.getElementById('totalWaitlist').textContent = waitlist.length;
+  document.getElementById('familyCount').textContent = waitlist.filter(w => w.type === 'family').length;
+  document.getElementById('childminderCount').textContent = waitlist.filter(w => w.type === 'childminder').length;
+  document.getElementById('contactCount').textContent = contacts.length;
+  
+  // Load waitlist table
+  const waitlistBody = document.getElementById('waitlistBody');
+  if (waitlist.length > 0) {
+    waitlistBody.innerHTML = waitlist.map(w => `
+      <tr>
+        <td><strong>${w.name}</strong></td>
+        <td><a href="mailto:${w.email}" style="color: #d85a30; text-decoration: none;">${w.email}</a></td>
+        <td><span class="badge badge-${w.type}">${w.type}</span></td>
+        <td>${w.location || '—'}</td>
+        <td>${w.message || '—'}</td>
+        <td><small>${w.timestamp}</small></td>
+        <td><button class="action-btn" onclick="deleteWaitlist(${w.id})">Delete</button></td>
+      </tr>
+    `).join('');
+  }
+  
+  // Load contacts table
+  const contactsBody = document.getElementById('contactsBody');
+  if (contacts.length > 0) {
+    contactsBody.innerHTML = contacts.map((c, i) => `
+      <tr>
+        <td><strong>${c.name}</strong></td>
+        <td><a href="mailto:${c.email}" style="color: #d85a30; text-decoration: none;">${c.email}</a></td>
+        <td>${c.subject}</td>
+        <td><small>${c.message.substring(0, 50)}...</small></td>
+        <td><small>${c.timestamp}</small></td>
+        <td><button class="action-btn" onclick="deleteContact(${i})">Delete</button></td>
+      </tr>
+    `).join('');
+  }
+}
+
+function filterTable() {
+  const search = document.getElementById('searchInput').value.toLowerCase();
+  const activeTab = document.querySelector('.tab-content.active').id;
+  
+  if (activeTab === 'waitlist') {
+    document.querySelectorAll('#waitlistTable tbody tr').forEach(row => {
+      const text = row.textContent.toLowerCase();
+      row.style.display = text.includes(search) ? '' : 'none';
+    });
+  } else {
+    document.querySelectorAll('#contactsTable tbody tr').forEach(row => {
+      const text = row.textContent.toLowerCase();
+      row.style.display = text.includes(search) ? '' : 'none';
+    });
+  }
+}
+
+function switchDataTab(e, tabName) {
+  e.preventDefault();
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById(tabName).classList.add('active');
+  e.target.classList.add('active');
+}
+
+function deleteWaitlist(id) {
+  if (!confirm('Delete this signup?')) return;
+  let waitlist = JSON.parse(localStorage.getItem('kincare_waitlist') || '[]');
+  waitlist = waitlist.filter(w => w.id !== id);
+  localStorage.setItem('kincare_waitlist', JSON.stringify(waitlist));
+  loadAllData();
+}
+
+function deleteContact(index) {
+  if (!confirm('Delete this contact?')) return;
+  let contacts = JSON.parse(localStorage.getItem('kincare_contacts') || '[]');
+  contacts.splice(index, 1);
+  localStorage.setItem('kincare_contacts', JSON.stringify(contacts));
+  loadAllData();
+}
+
+function exportToCSV() {
+  const waitlist = JSON.parse(localStorage.getItem('kincare_waitlist') || '[]');
+  const contacts = JSON.parse(localStorage.getItem('kincare_contacts') || '[]');
+  
+  let csv = 'WAITLIST SIGNUPS\n';
+  csv += 'Name,Email,Type,Location,Message,Timestamp\n';
+  waitlist.forEach(w => {
+    csv += `"${w.name}","${w.email}","${w.type}","${w.location || ''}","${w.message || ''}","${w.timestamp}"\n`;
+  });
+  
+  csv += '\n\nCONTACT SUBMISSIONS\n';
+  csv += 'Name,Email,Subject,Message,Timestamp\n';
+  contacts.forEach(c => {
+    csv += `"${c.name}","${c.email}","${c.subject}","${c.message}","${c.timestamp}"\n`;
+  });
+  
+  const blob = new Blob([csv], { type: 'text/csv' });
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `kincare_data_${new Date().toISOString().split('T')[0]}.csv`;
+  a.click();
+  
+  document.getElementById('successMsg').style.display = 'block';
+  setTimeout(() => {
+    document.getElementById('successMsg').style.display = 'none';
+  }, 3000);
+}
+
+function clearAllData() {
+  if (!confirm('Are you SURE you want to delete ALL data? This cannot be undone.')) return;
+  localStorage.removeItem('kincare_waitlist');
+  localStorage.removeItem('kincare_contacts');
+  loadAllData();
+}
+
+// Load on page open
+loadAllData();
+
+// Refresh every 5 seconds
+setInterval(loadAllData, 5000);
+</script>
+
+</body>
+</html>
