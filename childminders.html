@@ -1,0 +1,312 @@
+<html>
+<head>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #faf8f5; color: #2c2c2a; }
+
+header {
+  background: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 0.5px solid #e8e6e0;
+}
+
+.logo { font-size: 18px; font-weight: 600; color: #d85a30; }
+
+nav a { color: #5f5e5a; text-decoration: none; font-size: 14px; margin-left: 2rem; }
+nav a:hover { color: #d85a30; }
+
+.page-hero {
+  background: linear-gradient(135deg, #fff8f5 0%, #faf8f5 100%);
+  padding: 3rem 2rem;
+  text-align: center;
+  border-bottom: 1px solid #f0e8e0;
+}
+
+.page-hero h1 { font-size: 40px; font-weight: 700; margin-bottom: 0.5rem; color: #2c2c2a; }
+.page-hero p { font-size: 16px; color: #5f5e5a; }
+
+.section { padding: 3rem 2rem; max-width: 900px; margin: 0 auto; }
+.section h2 { font-size: 28px; font-weight: 700; margin-bottom: 2rem; color: #2c2c2a; }
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.benefit-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  border: 0.5px solid #e8e6e0;
+}
+
+.benefit-card h3 { font-size: 18px; font-weight: 600; color: #d85a30; margin-bottom: 0.75rem; }
+.benefit-card p { font-size: 14px; color: #5f5e5a; margin: 0; line-height: 1.6; }
+
+.earning-section {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  border: 0.5px solid #e8e6e0;
+  margin: 2rem 0;
+}
+
+.earning-section h3 { font-size: 18px; font-weight: 600; color: #d85a30; margin-bottom: 1.5rem; }
+
+.earning-rows {
+  display: grid;
+  gap: 1rem;
+}
+
+.earning-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  align-items: center;
+  padding: 1rem;
+  background: #faf8f5;
+  border-radius: 6px;
+  border: 0.5px solid #f0e8e0;
+}
+
+.earning-label { font-size: 14px; font-weight: 500; color: #2c2c2a; }
+.earning-value { font-size: 16px; font-weight: 700; color: #d85a30; }
+
+.process {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.process-step {
+  text-align: center;
+}
+
+.step-number {
+  width: 44px;
+  height: 44px;
+  background: #d85a30;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 18px;
+  margin: 0 auto 1rem;
+}
+
+.process-step h4 { font-size: 14px; font-weight: 600; color: #2c2c2a; margin-bottom: 0.5rem; }
+.process-step p { font-size: 12px; color: #888780; margin: 0; }
+
+.faq-item {
+  background: white;
+  border-radius: 8px;
+  border: 0.5px solid #e8e6e0;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.faq-question {
+  padding: 1.25rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  font-size: 14px;
+  color: #2c2c2a;
+  background: white;
+  transition: background 0.2s;
+}
+
+.faq-question:hover { background: #faf3f0; }
+
+.faq-toggle { font-size: 18px; color: #d85a30; transition: transform 0.2s; }
+.faq-answer { display: none; padding: 1rem 1.25rem; border-top: 0.5px solid #f0e8e0; font-size: 14px; color: #5f5e5a; background: #faf8f5; line-height: 1.7; }
+.faq-answer.active { display: block; }
+.faq-toggle.active { transform: rotate(180deg); }
+
+.cta-section {
+  background: #d85a30;
+  color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.cta-section h3 { font-size: 20px; font-weight: 600; margin-bottom: 0.5rem; }
+.cta-section p { font-size: 14px; margin-bottom: 1rem; opacity: 0.95; }
+
+button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: white;
+  color: #d85a30;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+footer {
+  background: white;
+  padding: 2rem;
+  text-align: center;
+  font-size: 12px;
+  color: #888780;
+  border-top: 0.5px solid #e8e6e0;
+  margin-top: 3rem;
+}
+
+@media (max-width: 768px) {
+  .benefits-grid, .process { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">KinCare Connect</div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="families.html">For Families</a>
+    <a href="childminders.html">For Childminders</a>
+    <a href="about-contact.html">About</a>
+    <a href="waitlist.html">Waitlist</a>
+  </nav>
+</header>
+
+<section class="page-hero">
+  <h1>Grow Your Childminding Business</h1>
+  <p>Reach families who actively want providers like you. No marketing cost. Real earnings potential.</p>
+</section>
+
+<section class="section">
+  <h2>Why Join KinCare Connect?</h2>
+  <div class="benefits-grid">
+    <div class="benefit-card">
+      <h3>💰 New Revenue Stream</h3>
+      <p>Access families actively searching for childminders. Reduce vacancy rates and grow your client base with minimal effort.</p>
+    </div>
+    <div class="benefit-card">
+      <h3>🚀 Zero Marketing Cost</h3>
+      <p>We handle all the marketing. Your profile is promoted directly to families in your area — no AdWords, no fees.</p>
+    </div>
+    <div class="benefit-card">
+      <h3>🌍 Your Community</h3>
+      <p>Attract families from your cultural background who specifically value what you offer. Build a loyal client base.</p>
+    </div>
+    <div class="benefit-card">
+      <h3>📊 Professional Tools</h3>
+      <p>Simple dashboard to manage bookings, availability, payments, and communication. Everything in one place.</p>
+    </div>
+  </div>
+
+  <div class="earning-section">
+    <h3>Earning Potential</h3>
+    <div class="earning-rows">
+      <div class="earning-row">
+        <span class="earning-label">Monthly subscription (Professional plan)</span>
+        <span class="earning-value">£24.99</span>
+      </div>
+      <div class="earning-row">
+        <span class="earning-label">Per successful booking (5% commission)</span>
+        <span class="earning-value">5% of fee</span>
+      </div>
+      <div class="earning-row">
+        <span class="earning-label">Estimated Year 1 reach</span>
+        <span class="earning-value">200+ families</span>
+      </div>
+    </div>
+    <p style="margin-top: 1rem; font-size: 12px; color: #888780;">Early adopters get 6 months free Professional listing. Pay only commission on bookings.</p>
+  </div>
+
+  <h2>How to Get Started</h2>
+  <div class="process">
+    <div class="process-step">
+      <div class="step-number">1</div>
+      <h4>Apply</h4>
+      <p>Sign up with your Ofsted registration and DBS details.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-number">2</div>
+      <h4>Create Profile</h4>
+      <p>Tell us your experience, languages, and what makes you special.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-number">3</div>
+      <h4>Go Live</h4>
+      <p>Families find you and send enquiries. You manage everything from your dashboard.</p>
+    </div>
+  </div>
+
+  <div style="margin-top: 3rem;">
+    <h2>Your Questions Answered</h2>
+    
+    <div class="faq-item">
+      <div class="faq-question" onclick="this.nextElementSibling.classList.toggle('active'); this.querySelector('.faq-toggle').classList.toggle('active');">
+        <span>Do I need to do anything special to join?</span>
+        <span class="faq-toggle">▼</span>
+      </div>
+      <div class="faq-answer">
+        No. You just need to be a registered childminder with a current DBS certificate and Ofsted registration. We verify these before your profile goes live.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="this.nextElementSibling.classList.toggle('active'); this.querySelector('.faq-toggle').classList.toggle('active');">
+        <span>How do I get paid?</span>
+        <span class="faq-toggle">▼</span>
+      </div>
+      <div class="faq-answer">
+        Families pay through the platform via card or bank transfer. You receive payment directly to your bank account within 3-5 working days. Subscriptions are billed monthly to your registered childminding business.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="this.nextElementSibling.classList.toggle('active'); this.querySelector('.faq-toggle').classList.toggle('active');">
+        <span>What if I'm already full?</span>
+        <span class="faq-toggle">▼</span>
+      </div>
+      <div class="faq-answer">
+        You can mark your availability as full or temporarily unavailable on your profile. You'll only receive enquiries when you're open to new clients.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="this.nextElementSibling.classList.toggle('active'); this.querySelector('.faq-toggle').classList.toggle('active');">
+        <span>Is there a contract or long-term commitment?</span>
+        <span class="faq-toggle">▼</span>
+      </div>
+      <div class="faq-answer">
+        No. You can cancel your subscription at any time with no penalty. You only pay commission on bookings you accept.
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-section">
+    <h3>Expand Your Client Base Today</h3>
+    <p>Early adopters get 6 months free. Limited spots available for launch.</p>
+    <button onclick="alert('Thank you! We\'ll be in touch with next steps.')">Become an Early Adopter</button>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2026 KinCare Connect Ltd. | Growing childminding together.</p>
+</footer>
+
+</body>
+</html>
