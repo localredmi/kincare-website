@@ -236,14 +236,22 @@
 (function(){
   var choice = localStorage.getItem('kincare-cookie-consent');
   var banner = document.getElementById('cookie-banner');
-  if(!choice){ banner.classList.add('show'); }
+  function showBanner(){
+    banner.classList.add('show');
+    document.body.style.paddingBottom = (banner.offsetHeight + 24) + 'px';
+  }
+  function hideBanner(){
+    banner.classList.remove('show');
+    document.body.style.paddingBottom = '';
+  }
+  if(!choice){ showBanner(); }
   document.getElementById('cookie-accept').addEventListener('click', function(){
     localStorage.setItem('kincare-cookie-consent','all');
-    banner.classList.remove('show');
+    hideBanner();
   });
   document.getElementById('cookie-decline').addEventListener('click', function(){
     localStorage.setItem('kincare-cookie-consent','essential');
-    banner.classList.remove('show');
+    hideBanner();
   });
 })();
 </script>

@@ -78,7 +78,6 @@
   }
   .nav-cta:hover{ background:var(--clay); transform:translateY(-1px); }
 
-  /* mobile hamburger + dropdown */
   .nav-toggle{ display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:8px; z-index:60; }
   .nav-toggle span{ width:22px; height:2px; background:var(--ink); border-radius:2px; transition:all .25s ease; }
   .nav-toggle.open span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
@@ -141,10 +140,17 @@
   .btn-ghost{ border:1px solid var(--line-cream); color:var(--text-cream); }
   .btn-ghost:hover{ background:rgba(251,243,231,0.08); }
 
-  .braid-wrap{ position:relative; aspect-ratio:1/1.05; }
+  .braid-wrap{ position:relative; }
+  .braid-svg{ aspect-ratio:1/1.06; }
+  .braid-legend{
+    display:flex; justify-content:center; gap:22px; flex-wrap:wrap;
+    margin-top:14px; padding-top:14px; border-top:1px solid var(--line-cream);
+  }
+  .legend-item{ display:flex; align-items:center; gap:8px; font-size:0.78rem; color:rgba(251,243,231,0.75); }
+  .legend-dot{ width:9px; height:9px; border-radius:50%; flex-shrink:0; }
   .braid-caption{
-    position:absolute; bottom:-2px; left:0; right:0;
     text-align:center; font-size:0.68rem; color:rgba(251,243,231,0.45);
+    margin-top:10px;
   }
 
   /* ---------- TRUST STRIP ---------- */
@@ -297,7 +303,7 @@
     .nav-links{ display:none; }
     .nav-toggle{ display:flex; }
     .hero-grid{ grid-template-columns:1fr; }
-    .braid-wrap{ order:-1; max-width:260px; margin:0 auto 20px; }
+    .braid-wrap{ order:-1; max-width:280px; margin:0 auto 20px; }
     .journey-grid{ grid-template-columns:1fr; gap:36px; }
     .badge-grid{ grid-template-columns:1fr 1fr; }
     .waitlist-form{ flex-direction:column; border-radius:20px; }
@@ -324,7 +330,6 @@
     <div class="nav-links">
       <a href="families.html">For Families</a>
       <a href="childminders.html">For Childminders</a>
-      <a href="kincare-trust-safety.html">Trust &amp; Safety</a>
       <a href="about-contact.html">About</a>
       <a href="kincare-waitlist.html" class="nav-cta">Join Waitlist</a>
     </div>
@@ -335,7 +340,6 @@
   <div class="mobile-menu" id="mobileMenu">
     <a href="families.html">For Families</a>
     <a href="childminders.html">For Childminders</a>
-    <a href="kincare-trust-safety.html">Trust &amp; Safety</a>
     <a href="about-contact.html">About</a>
     <a href="kincare-waitlist.html">Join Waitlist</a>
   </div>
@@ -353,7 +357,7 @@
       </div>
     </div>
     <div class="braid-wrap">
-      <svg viewBox="0 0 320 340" width="100%" height="100%">
+      <svg class="braid-svg" viewBox="0 0 320 340" width="100%" height="100%">
         <defs>
           <linearGradient id="strandA" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stop-color="#C57F2E"/>
@@ -369,12 +373,17 @@
           </linearGradient>
         </defs>
         <g id="braidGroup" fill="none" stroke-linecap="round" stroke-width="10">
-          <path class="strand strand-a" stroke="url(#strandA)" d="M60,10 C140,50 20,90 100,130 C180,170 20,210 100,250 C160,280 80,310 120,330"/>
-          <path class="strand strand-b" stroke="url(#strandB)" d="M160,10 C90,50 210,90 130,130 C50,170 210,210 130,250 C90,280 170,310 150,330"/>
-          <path class="strand strand-c" stroke="url(#strandC)" d="M260,10 C180,50 300,90 220,130 C140,170 300,210 220,250 C180,280 240,310 180,330"/>
+          <path class="strand strand-a" stroke="url(#strandA)" d="M160,10 C183.3,23.3 230,36.7 230,50 C230,63.3 183.3,76.7 160,90 C136.7,103.3 90,116.7 90,130 C90,143.3 136.7,156.7 160,170 C183.3,183.3 230,196.7 230,210 C230,223.3 183.3,236.7 160,250 C136.7,263.3 90,276.7 90,290 C90,303.3 136.7,316.7 160,330"/>
+          <path class="strand strand-b" stroke="url(#strandB)" d="M220.6,10 C188.7,23.3 145.2,36.7 125,50 C104.8,63.3 87.7,76.7 99.4,90 C111.1,103.3 174.8,116.7 195,130 C215.2,143.3 232.3,156.7 220.6,170 C208.9,183.3 145.2,196.7 125,210 C104.8,223.3 87.7,236.7 99.4,250 C111.1,263.3 174.8,276.7 195,290 C215.2,303.3 212.1,316.7 220.6,330"/>
+          <path class="strand strand-c" stroke="url(#strandC)" d="M99.4,10 C107.9,23.3 104.8,36.7 125,50 C145.2,63.3 208.9,76.7 220.6,90 C232.3,103.3 215.2,116.7 195,130 C174.8,143.3 111.1,156.7 99.4,170 C87.7,183.3 104.8,196.7 125,210 C145.2,223.3 208.9,236.7 220.6,250 C232.3,263.3 215.2,276.7 195,290 C174.8,303.3 131.3,316.7 99.4,330"/>
         </g>
       </svg>
-      <div class="braid-caption mono">three strands, one trust</div>
+      <div class="braid-legend">
+        <div class="legend-item"><span class="legend-dot" style="background:#C57F2E;"></span>Culture</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#3F6B4F;"></span>Trust &amp; Safety</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#A63D2F;"></span>Community</div>
+      </div>
+      <div class="braid-caption mono">three strands, woven together</div>
     </div>
   </div>
 </section>
@@ -580,14 +589,22 @@
 (function(){
   var choice = localStorage.getItem('kincare-cookie-consent');
   var banner = document.getElementById('cookie-banner');
-  if(!choice){ banner.classList.add('show'); }
+  function showBanner(){
+    banner.classList.add('show');
+    document.body.style.paddingBottom = (banner.offsetHeight + 24) + 'px';
+  }
+  function hideBanner(){
+    banner.classList.remove('show');
+    document.body.style.paddingBottom = '';
+  }
+  if(!choice){ showBanner(); }
   document.getElementById('cookie-accept').addEventListener('click', function(){
     localStorage.setItem('kincare-cookie-consent','all');
-    banner.classList.remove('show');
+    hideBanner();
   });
   document.getElementById('cookie-decline').addEventListener('click', function(){
     localStorage.setItem('kincare-cookie-consent','essential');
-    banner.classList.remove('show');
+    hideBanner();
   });
 })();
 </script>

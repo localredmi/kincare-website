@@ -278,6 +278,7 @@
       <a href="kincare-faq.html">FAQ</a>
       <a href="kincare-trust-safety.html">Trust &amp; Safety</a>
       <a href="kincare-blog.html">Blog</a>
+      <a href="kincare-press-kit.html">Press</a>
       <a href="kincare-privacy-terms.html">Privacy &amp; Terms</a>
     </div>
     <div class="foot-copy">© 2026 KinCare Connect Ltd.</div>
@@ -324,14 +325,22 @@
 (function(){
   var choice = localStorage.getItem('kincare-cookie-consent');
   var banner = document.getElementById('cookie-banner');
-  if(!choice){ banner.classList.add('show'); }
+  function showBanner(){
+    banner.classList.add('show');
+    document.body.style.paddingBottom = (banner.offsetHeight + 24) + 'px';
+  }
+  function hideBanner(){
+    banner.classList.remove('show');
+    document.body.style.paddingBottom = '';
+  }
+  if(!choice){ showBanner(); }
   document.getElementById('cookie-accept').addEventListener('click', function(){
     localStorage.setItem('kincare-cookie-consent','all');
-    banner.classList.remove('show');
+    hideBanner();
   });
   document.getElementById('cookie-decline').addEventListener('click', function(){
     localStorage.setItem('kincare-cookie-consent','essential');
-    banner.classList.remove('show');
+    hideBanner();
   });
 })();
 </script>

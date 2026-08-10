@@ -96,7 +96,7 @@
     <div class="nav-links">
       <a href="families.html">For Families</a>
       <a href="childminders.html">For Childminders</a>
-      <a href="kincare-press-kit.html" class="current">Press</a>
+      <a href="about-contact.html">About</a>
       <a href="kincare-waitlist.html" class="nav-cta">Join Waitlist</a>
     </div>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
@@ -252,14 +252,22 @@
 (function(){
   var choice = localStorage.getItem('kincare-cookie-consent');
   var banner = document.getElementById('cookie-banner');
-  if(!choice){ banner.classList.add('show'); }
+  function showBanner(){
+    banner.classList.add('show');
+    document.body.style.paddingBottom = (banner.offsetHeight + 24) + 'px';
+  }
+  function hideBanner(){
+    banner.classList.remove('show');
+    document.body.style.paddingBottom = '';
+  }
+  if(!choice){ showBanner(); }
   document.getElementById('cookie-accept').addEventListener('click', function(){
     localStorage.setItem('kincare-cookie-consent','all');
-    banner.classList.remove('show');
+    hideBanner();
   });
   document.getElementById('cookie-decline').addEventListener('click', function(){
     localStorage.setItem('kincare-cookie-consent','essential');
-    banner.classList.remove('show');
+    hideBanner();
   });
 })();
 </script>
