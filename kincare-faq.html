@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ — KinCare Connect</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,400..600&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#16223E; --paper:#FBF3E7; --paper-warm:#F3E6D2;
+    --ochre:#C57F2E; --clay:#A63D2F; --leaf:#3F6B4F;
+    --text-dark:#2A2118; --text-cream:#FBF3E7; --text-muted:#6B5F4F;
+    --line: rgba(42,33,24,0.12); --line-cream: rgba(251,243,231,0.22);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{ background:var(--paper); color:var(--text-dark); font-family:'Work Sans', sans-serif; font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased; }
+  a{ color:inherit; text-decoration:none; }
+  .mono{ font-family:'IBM Plex Mono', monospace; letter-spacing:0.06em; text-transform:uppercase; }
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 32px; }
+  header{ position:sticky; top:0; z-index:50; background:rgba(251,243,231,0.86); backdrop-filter:blur(10px); border-bottom:1px solid var(--line); }
+  .nav{ display:flex; align-items:center; justify-content:space-between; padding:20px 32px; max-width:1180px; margin:0 auto; }
+  .logo{ font-family:'Fraunces', serif; font-weight:600; font-style:italic; font-size:1.35rem; display:flex; align-items:center; gap:10px; }
+  .logo-mark{ width:28px; height:28px; }
+  .nav-links{ display:flex; gap:36px; align-items:center; }
+  .nav-links a{ font-size:0.92rem; font-weight:500; position:relative; padding:4px 0; }
+  .nav-links a.current{ color:var(--clay); }
+  .nav-cta{ background:var(--ink); color:var(--paper) !important; padding:11px 22px; border-radius:100px; font-weight:500; font-size:0.9rem; }
+  @media (max-width:860px){ .nav-links{ display:none; } }
+
+  .page-hero{ background:var(--ink); color:var(--text-cream); padding:80px 0 60px; text-align:center; }
+  .eyebrow{ display:inline-flex; align-items:center; gap:10px; font-size:0.74rem; color:var(--ochre); margin-bottom:20px; justify-content:center; }
+  .eyebrow::before{ content:''; width:22px; height:1px; background:var(--ochre); }
+  .page-hero h1{ font-family:'Fraunces', serif; font-weight:400; font-size:clamp(2.1rem,4vw,2.9rem); }
+  .page-hero h1 em{ font-style:italic; color:var(--ochre); }
+
+  section{ padding:70px 0; }
+  .faq-category{ margin-bottom:56px; }
+  .faq-category:last-child{ margin-bottom:0; }
+  .cat-label{ font-size:0.74rem; color:var(--clay); margin-bottom:6px; display:block; }
+  .cat-title{ font-family:'Fraunces', serif; font-weight:500; font-size:1.5rem; color:var(--ink); margin-bottom:24px; }
+  .faq{ border-top:1px solid var(--line); }
+  .faq-item{ border-bottom:1px solid var(--line); }
+  .faq-q{ width:100%; text-align:left; background:none; border:none; padding:22px 0; display:flex; justify-content:space-between; align-items:center; cursor:pointer; font-family:'Fraunces', serif; font-size:1.08rem; color:var(--ink); gap:20px; }
+  .faq-q .plus{ font-family:'Work Sans'; font-size:1.4rem; color:var(--ochre); transition:transform .25s ease; flex-shrink:0; }
+  .faq-item.open .plus{ transform:rotate(45deg); }
+  .faq-a{ max-height:0; overflow:hidden; transition:max-height .35s ease; }
+  .faq-item.open .faq-a{ max-height:260px; }
+  .faq-a p{ padding-bottom:22px; color:var(--text-muted); max-width:640px; font-size:0.94rem; }
+
+  .cta-band{ background:var(--paper-warm); text-align:center; padding:70px 0; border-radius:20px; margin-top:20px; }
+  .cta-band h3{ font-family:'Fraunces', serif; font-weight:500; font-size:1.5rem; color:var(--ink); margin-bottom:14px; }
+  .cta-band p{ color:var(--text-muted); margin-bottom:26px; }
+  .btn-primary{ display:inline-flex; padding:14px 28px; border-radius:100px; background:var(--ink); color:var(--paper); font-weight:600; font-size:0.92rem; }
+
+  footer{ padding:40px 0; }
+  .foot-row{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; border-top:1px solid var(--line); padding-top:28px; }
+  .foot-links{ display:flex; gap:22px; flex-wrap:wrap; font-size:0.83rem; color:var(--text-muted); }
+  .foot-links a:hover{ color:var(--clay); }
+  .foot-copy{ font-size:0.78rem; color:var(--text-muted); }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <a href="kincare-connect-redesign.html" class="logo">
+      <svg class="logo-mark" viewBox="0 0 28 28" fill="none">
+        <path d="M4 8 Q14 2 24 8 Q14 14 4 8Z" stroke="#C57F2E" stroke-width="1.4"/>
+        <path d="M4 20 Q14 14 24 20 Q14 26 4 20Z" stroke="#3F6B4F" stroke-width="1.4"/>
+        <path d="M4 14 Q14 8 24 14" stroke="#A63D2F" stroke-width="1.4" fill="none"/>
+      </svg>
+      KinCare Connect
+    </a>
+    <div class="nav-links">
+      <a href="kincare-for-families.html">For Families</a>
+      <a href="kincare-for-childminders.html">For Childminders</a>
+      <a href="kincare-about-contact.html">About</a>
+      <a href="kincare-waitlist.html" class="nav-cta">Join Waitlist</a>
+    </div>
+  </nav>
+</header>
+
+<section class="page-hero" style="padding-bottom:60px;">
+  <div class="wrap">
+    <span class="eyebrow mono">Frequently asked</span>
+    <h1>Questions, <em>answered</em>.</h1>
+  </div>
+</section>
+
+<section>
+  <div class="wrap" style="max-width:760px;">
+
+    <div class="faq-category">
+      <span class="cat-label mono">General</span>
+      <div class="cat-title">About KinCare Connect</div>
+      <div class="faq">
+        <div class="faq-item open">
+          <button class="faq-q">What is KinCare Connect? <span class="plus">+</span></button>
+          <div class="faq-a"><p>A platform connecting African diaspora families across the UK with culturally-matched, DBS-checked childminders — built around shared language, heritage, and care philosophy, not just postcode and price.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">When does KinCare Connect launch? <span class="plus">+</span></button>
+          <div class="faq-a"><p>We're currently in a pre-launch, waitlist stage, starting with Birmingham. Join the waitlist to be first to know when matching opens in your area.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Is it free to join the waitlist? <span class="plus">+</span></button>
+          <div class="faq-a"><p>Yes — joining costs nothing for both families and childminders, and reserves your place for early access.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-category">
+      <span class="cat-label mono">For families</span>
+      <div class="cat-title">Finding care</div>
+      <div class="faq">
+        <div class="faq-item">
+          <button class="faq-q">How do I filter by language or culture? <span class="plus">+</span></button>
+          <div class="faq-a"><p>Once matching opens, you'll be able to filter by language, heritage, and care style directly in search — no more scrolling through generic profiles.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">How are childminders vetted? <span class="plus">+</span></button>
+          <div class="faq-a"><p>Every childminder completes an enhanced DBS check and identity verification before their profile goes live. See our <a href="kincare-trust-safety.html" style="text-decoration:underline; color:var(--clay);">Trust &amp; Safety page</a> for full details.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-category">
+      <span class="cat-label mono">For childminders</span>
+      <div class="cat-title">Joining as a provider</div>
+      <div class="faq">
+        <div class="faq-item">
+          <button class="faq-q">Do I need to already be Ofsted-registered? <span class="plus">+</span></button>
+          <div class="faq-a"><p>You'll need to meet standard UK childminding requirements. We'll guide you through exactly what's needed as part of onboarding.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Is there a cost to join as a childminder? <span class="plus">+</span></button>
+          <div class="faq-a"><p>Joining the waitlist and building your profile is free. Any future service fees will be shared clearly before launch.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-category">
+      <span class="cat-label mono">Privacy &amp; data</span>
+      <div class="cat-title">Your information</div>
+      <div class="faq">
+        <div class="faq-item">
+          <button class="faq-q">How is my data used? <span class="plus">+</span></button>
+          <div class="faq-a"><p>Only to run the waitlist and respond to enquiries — never sold to third parties. Full details in our <a href="kincare-privacy-terms.html" style="text-decoration:underline; color:var(--clay);">Privacy Policy</a>.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Can I unsubscribe or delete my data? <span class="plus">+</span></button>
+          <div class="faq-a"><p>Yes, at any time — email admin@kincareconnect.co.uk and we'll action it within one month, as required by UK GDPR.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-band">
+      <h3>Still have a question?</h3>
+      <p>We reply within 48 hours.</p>
+      <a href="kincare-about-contact.html" class="btn-primary">Contact us →</a>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-row">
+    <a href="kincare-connect-redesign.html" class="logo" style="font-size:1.05rem;">KinCare Connect</a>
+    <div class="foot-links">
+      <a href="kincare-trust-safety.html">Trust &amp; Safety</a>
+      <a href="kincare-blog.html">Blog</a>
+      <a href="kincare-press-kit.html">Press</a>
+      <a href="kincare-privacy-terms.html">Privacy &amp; Terms</a>
+    </div>
+    <div class="foot-copy">© 2026 KinCare Connect Ltd.</div>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.faq-q').forEach(btn=>{
+    btn.addEventListener('click', ()=> btn.parentElement.classList.toggle('open'));
+  });
+</script>
+
+<div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Cookie consent">
+  <p>We use essential cookies to make this site work, and would like your consent for optional analytics cookies. <a href="kincare-privacy-terms.html#p7">Learn more</a></p>
+  <div class="cookie-actions">
+    <button id="cookie-decline" class="cookie-btn-ghost">Essential only</button>
+    <button id="cookie-accept" class="cookie-btn-primary">Accept all</button>
+  </div>
+</div>
+<style>
+.cookie-banner{ position:fixed; left:20px; right:20px; bottom:20px; max-width:560px; margin:0 auto; background:#16223E; color:#FBF3E7; border-radius:16px; padding:22px 24px; box-shadow:0 20px 50px rgba(0,0,0,0.3); z-index:999; display:none; gap:16px; flex-wrap:wrap; align-items:center; justify-content:space-between; font-family:'Work Sans',sans-serif; }
+.cookie-banner.show{ display:flex; }
+.cookie-banner p{ font-size:0.85rem; margin:0; flex:1; min-width:200px; color:rgba(251,243,231,0.85); }
+.cookie-banner a{ color:#C57F2E; text-decoration:underline; }
+.cookie-actions{ display:flex; gap:10px; flex-shrink:0; }
+.cookie-btn-ghost, .cookie-btn-primary{ border:none; border-radius:100px; padding:10px 18px; font-size:0.82rem; font-weight:600; cursor:pointer; font-family:'Work Sans',sans-serif; }
+.cookie-btn-ghost{ background:transparent; border:1px solid rgba(251,243,231,0.3); color:#FBF3E7; }
+.cookie-btn-primary{ background:#C57F2E; color:#16223E; }
+</style>
+<script>
+(function(){
+  var choice = localStorage.getItem('kincare-cookie-consent');
+  var banner = document.getElementById('cookie-banner');
+  if(!choice){ banner.classList.add('show'); }
+  document.getElementById('cookie-accept').addEventListener('click', function(){
+    localStorage.setItem('kincare-cookie-consent','all');
+    banner.classList.remove('show');
+  });
+  document.getElementById('cookie-decline').addEventListener('click', function(){
+    localStorage.setItem('kincare-cookie-consent','essential');
+    banner.classList.remove('show');
+  });
+})();
+</script>
+
+</body>
+</html>

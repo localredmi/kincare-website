@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trust &amp; Safety — KinCare Connect</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,400..600&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#16223E; --paper:#FBF3E7; --paper-warm:#F3E6D2;
+    --ochre:#C57F2E; --clay:#A63D2F; --leaf:#3F6B4F;
+    --text-dark:#2A2118; --text-cream:#FBF3E7; --text-muted:#6B5F4F;
+    --line: rgba(42,33,24,0.12); --line-cream: rgba(251,243,231,0.22);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{ background:var(--paper); color:var(--text-dark); font-family:'Work Sans', sans-serif; font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased; }
+  a{ color:inherit; text-decoration:none; }
+  .mono{ font-family:'IBM Plex Mono', monospace; letter-spacing:0.06em; text-transform:uppercase; }
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 32px; }
+  header{ position:sticky; top:0; z-index:50; background:rgba(251,243,231,0.86); backdrop-filter:blur(10px); border-bottom:1px solid var(--line); }
+  .nav{ display:flex; align-items:center; justify-content:space-between; padding:20px 32px; max-width:1180px; margin:0 auto; }
+  .logo{ font-family:'Fraunces', serif; font-weight:600; font-style:italic; font-size:1.35rem; display:flex; align-items:center; gap:10px; }
+  .logo-mark{ width:28px; height:28px; }
+  .nav-links{ display:flex; gap:36px; align-items:center; }
+  .nav-links a{ font-size:0.92rem; font-weight:500; }
+  .nav-links a.current{ color:var(--clay); }
+  .nav-cta{ background:var(--ink); color:var(--paper) !important; padding:11px 22px; border-radius:100px; font-weight:500; font-size:0.9rem; }
+  @media (max-width:860px){ .nav-links{ display:none; } }
+
+  .page-hero{ background:var(--ink); color:var(--text-cream); padding:90px 0 70px; position:relative; overflow:hidden; }
+  .page-hero::before{ content:''; position:absolute; inset:0; background:radial-gradient(circle at 20% 20%, rgba(63,107,79,0.2), transparent 45%); }
+  .page-hero .inner{ position:relative; z-index:1; max-width:640px; }
+  .eyebrow{ display:inline-flex; align-items:center; gap:10px; font-size:0.74rem; color:var(--ochre); margin-bottom:22px; }
+  .eyebrow::before{ content:''; width:22px; height:1px; background:var(--ochre); }
+  .page-hero h1{ font-family:'Fraunces', serif; font-weight:400; font-size:clamp(2.2rem,4.5vw,3.1rem); line-height:1.12; }
+  .page-hero h1 em{ font-style:italic; color:var(--ochre); }
+  .page-hero p{ margin-top:18px; color:rgba(251,243,231,0.8); max-width:480px; }
+
+  section{ padding:90px 0; }
+  .section-head{ max-width:600px; margin-bottom:48px; }
+  .section-tag{ font-size:0.72rem; color:var(--clay); margin-bottom:14px; display:block; }
+  .section-head h2{ font-family:'Fraunces', serif; font-weight:400; font-size:clamp(1.7rem,3vw,2.3rem); color:var(--ink); }
+  .section-head h2 em{ color:var(--clay); font-style:italic; }
+  .section-head p{ margin-top:14px; color:var(--text-muted); }
+
+  .step-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:2px; background:var(--line); border:1px solid var(--line); border-radius:16px; overflow:hidden; }
+  .step-card{ background:var(--paper); padding:30px 24px; min-height:200px; display:flex; flex-direction:column; justify-content:space-between; }
+  .step-num{ font-family:'IBM Plex Mono'; font-size:0.75rem; color:var(--ochre); }
+  .step-title{ font-family:'Fraunces', serif; font-weight:500; font-size:1.05rem; color:var(--ink); margin:14px 0 6px; }
+  .step-desc{ font-size:0.83rem; color:var(--text-muted); }
+  @media (max-width:860px){ .step-grid{ grid-template-columns:1fr 1fr; } }
+  @media (max-width:560px){ .step-grid{ grid-template-columns:1fr; } }
+
+  .commit-band{ background:var(--paper-warm); }
+  .commit-grid{ display:grid; grid-template-columns:1fr 1fr; gap:40px; }
+  .commit-item{ display:flex; gap:16px; }
+  .commit-dot{ width:34px; height:34px; border-radius:50%; background:var(--ink); color:var(--ochre); flex-shrink:0; display:flex; align-items:center; justify-content:center; font-family:'Fraunces', serif; font-style:italic; }
+  .commit-item h4{ font-family:'Fraunces', serif; font-weight:500; font-size:1.05rem; color:var(--ink); margin-bottom:6px; }
+  .commit-item p{ font-size:0.88rem; color:var(--text-muted); }
+  @media (max-width:860px){ .commit-grid{ grid-template-columns:1fr; } }
+
+  .roadmap-note{ background:var(--ink); color:var(--paper); border-radius:20px; padding:40px; }
+  .roadmap-note .tag{ font-size:0.72rem; color:var(--ochre); margin-bottom:14px; display:block; }
+  .roadmap-note h3{ font-family:'Fraunces', serif; font-weight:500; font-size:1.3rem; margin-bottom:12px; }
+  .roadmap-note p{ color:rgba(251,243,231,0.78); font-size:0.94rem; max-width:600px; }
+
+  footer{ padding:40px 0; }
+  .foot-row{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; border-top:1px solid var(--line); padding-top:28px; }
+  .foot-links{ display:flex; gap:22px; flex-wrap:wrap; font-size:0.83rem; color:var(--text-muted); }
+  .foot-links a:hover{ color:var(--clay); }
+  .foot-copy{ font-size:0.78rem; color:var(--text-muted); }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <a href="kincare-connect-redesign.html" class="logo">
+      <svg class="logo-mark" viewBox="0 0 28 28" fill="none">
+        <path d="M4 8 Q14 2 24 8 Q14 14 4 8Z" stroke="#C57F2E" stroke-width="1.4"/>
+        <path d="M4 20 Q14 14 24 20 Q14 26 4 20Z" stroke="#3F6B4F" stroke-width="1.4"/>
+        <path d="M4 14 Q14 8 24 14" stroke="#A63D2F" stroke-width="1.4" fill="none"/>
+      </svg>
+      KinCare Connect
+    </a>
+    <div class="nav-links">
+      <a href="kincare-for-families.html">For Families</a>
+      <a href="kincare-for-childminders.html">For Childminders</a>
+      <a href="kincare-trust-safety.html" class="current">Trust &amp; Safety</a>
+      <a href="kincare-waitlist.html" class="nav-cta">Join Waitlist</a>
+    </div>
+  </nav>
+</header>
+
+<section class="page-hero" style="padding-bottom:70px;">
+  <div class="wrap inner">
+    <span class="eyebrow mono">Trust &amp; safety</span>
+    <h1>Verification you can <em>see</em>, not just take our word for.</h1>
+    <p>Safety isn't a feature we bolted on — it's the reason KinCare Connect exists in the first place.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-tag mono">How verification works</span>
+      <h2>Four checks before <em>any</em> profile goes live.</h2>
+    </div>
+    <div class="step-grid">
+      <div class="step-card">
+        <span class="step-num">01</span>
+        <div><div class="step-title">Identity verification</div><div class="step-desc">Every childminder confirms their identity before applying to join.</div></div>
+      </div>
+      <div class="step-card">
+        <span class="step-num">02</span>
+        <div><div class="step-title">Enhanced DBS check</div><div class="step-desc">A full enhanced Disclosure and Barring Service check is required, not optional.</div></div>
+      </div>
+      <div class="step-card">
+        <span class="step-num">03</span>
+        <div><div class="step-title">Profile review</div><div class="step-desc">Profiles are reviewed for completeness and accuracy before publishing.</div></div>
+      </div>
+      <div class="step-card">
+        <span class="step-num">04</span>
+        <div><div class="step-title">Ongoing reviews</div><div class="step-desc">Community reviews from matched families stay attached to every profile.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="commit-band">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-tag mono">Our commitments</span>
+      <h2>What we promise <em>every</em> family and childminder.</h2>
+    </div>
+    <div class="commit-grid">
+      <div class="commit-item">
+        <div class="commit-dot">"</div>
+        <div><h4>No profile without a DBS check</h4><p>This is a hard requirement, not a preference — no exceptions.</p></div>
+      </div>
+      <div class="commit-item">
+        <div class="commit-dot">"</div>
+        <div><h4>Reviews stay attached, always</h4><p>Feedback can't be quietly removed to protect a profile's rating.</p></div>
+      </div>
+      <div class="commit-item">
+        <div class="commit-dot">"</div>
+        <div><h4>Concerns are taken seriously</h4><p>Any safeguarding concern raised by a family is investigated directly.</p></div>
+      </div>
+      <div class="commit-item">
+        <div class="commit-dot">"</div>
+        <div><h4>Your data stays protected</h4><p>Full detail in our <a href="kincare-privacy-terms.html" style="text-decoration:underline;">Privacy Policy</a>.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="roadmap-note">
+      <span class="tag mono">Looking ahead</span>
+      <h3>Building toward formal regulatory registration</h3>
+      <p>Beyond our current verification process, we're exploring formal registration as a UK Childminder Agency (CMA) with Ofsted — which would bring an additional layer of independent regulatory oversight to every childminder on the platform. This is part of our roadmap, not yet in place, and we'll update this page as it progresses.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-row">
+    <a href="kincare-connect-redesign.html" class="logo" style="font-size:1.05rem;">KinCare Connect</a>
+    <div class="foot-links">
+      <a href="kincare-faq.html">FAQ</a>
+      <a href="kincare-blog.html">Blog</a>
+      <a href="kincare-press-kit.html">Press</a>
+      <a href="kincare-privacy-terms.html">Privacy &amp; Terms</a>
+    </div>
+    <div class="foot-copy">© 2026 KinCare Connect Ltd.</div>
+  </div>
+</footer>
+
+<div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Cookie consent">
+  <p>We use essential cookies to make this site work, and would like your consent for optional analytics cookies. <a href="kincare-privacy-terms.html#p7">Learn more</a></p>
+  <div class="cookie-actions">
+    <button id="cookie-decline" class="cookie-btn-ghost">Essential only</button>
+    <button id="cookie-accept" class="cookie-btn-primary">Accept all</button>
+  </div>
+</div>
+<style>
+.cookie-banner{ position:fixed; left:20px; right:20px; bottom:20px; max-width:560px; margin:0 auto; background:#16223E; color:#FBF3E7; border-radius:16px; padding:22px 24px; box-shadow:0 20px 50px rgba(0,0,0,0.3); z-index:999; display:none; gap:16px; flex-wrap:wrap; align-items:center; justify-content:space-between; font-family:'Work Sans',sans-serif; }
+.cookie-banner.show{ display:flex; }
+.cookie-banner p{ font-size:0.85rem; margin:0; flex:1; min-width:200px; color:rgba(251,243,231,0.85); }
+.cookie-banner a{ color:#C57F2E; text-decoration:underline; }
+.cookie-actions{ display:flex; gap:10px; flex-shrink:0; }
+.cookie-btn-ghost, .cookie-btn-primary{ border:none; border-radius:100px; padding:10px 18px; font-size:0.82rem; font-weight:600; cursor:pointer; font-family:'Work Sans',sans-serif; }
+.cookie-btn-ghost{ background:transparent; border:1px solid rgba(251,243,231,0.3); color:#FBF3E7; }
+.cookie-btn-primary{ background:#C57F2E; color:#16223E; }
+</style>
+<script>
+(function(){
+  var choice = localStorage.getItem('kincare-cookie-consent');
+  var banner = document.getElementById('cookie-banner');
+  if(!choice){ banner.classList.add('show'); }
+  document.getElementById('cookie-accept').addEventListener('click', function(){
+    localStorage.setItem('kincare-cookie-consent','all');
+    banner.classList.remove('show');
+  });
+  document.getElementById('cookie-decline').addEventListener('click', function(){
+    localStorage.setItem('kincare-cookie-consent','essential');
+    banner.classList.remove('show');
+  });
+})();
+</script>
+
+</body>
+</html>

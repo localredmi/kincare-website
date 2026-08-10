@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — KinCare Connect</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,400..600&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#16223E; --paper:#FBF3E7; --paper-warm:#F3E6D2;
+    --ochre:#C57F2E; --clay:#A63D2F; --leaf:#3F6B4F;
+    --text-dark:#2A2118; --text-cream:#FBF3E7; --text-muted:#6B5F4F;
+    --line: rgba(42,33,24,0.12); --line-cream: rgba(251,243,231,0.22);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{ background:var(--paper); color:var(--text-dark); font-family:'Work Sans', sans-serif; font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased; }
+  a{ color:inherit; text-decoration:none; }
+  .mono{ font-family:'IBM Plex Mono', monospace; letter-spacing:0.06em; text-transform:uppercase; }
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 32px; }
+  header{ position:sticky; top:0; z-index:50; background:rgba(251,243,231,0.86); backdrop-filter:blur(10px); border-bottom:1px solid var(--line); }
+  .nav{ display:flex; align-items:center; justify-content:space-between; padding:20px 32px; max-width:1180px; margin:0 auto; }
+  .logo{ font-family:'Fraunces', serif; font-weight:600; font-style:italic; font-size:1.35rem; display:flex; align-items:center; gap:10px; }
+  .logo-mark{ width:28px; height:28px; }
+  .nav-links{ display:flex; gap:36px; align-items:center; }
+  .nav-links a{ font-size:0.92rem; font-weight:500; }
+  .nav-links a.current{ color:var(--clay); }
+  .nav-cta{ background:var(--ink); color:var(--paper) !important; padding:11px 22px; border-radius:100px; font-weight:500; font-size:0.9rem; }
+  @media (max-width:860px){ .nav-links{ display:none; } }
+
+  .page-hero{ background:var(--ink); color:var(--text-cream); padding:80px 0 60px; text-align:center; }
+  .eyebrow{ display:inline-flex; align-items:center; gap:10px; font-size:0.74rem; color:var(--ochre); margin-bottom:20px; justify-content:center; }
+  .eyebrow::before{ content:''; width:22px; height:1px; background:var(--ochre); }
+  .page-hero h1{ font-family:'Fraunces', serif; font-weight:400; font-size:clamp(2.1rem,4vw,2.9rem); }
+  .page-hero h1 em{ font-style:italic; color:var(--ochre); }
+
+  .draft-banner{ background:var(--paper-warm); border:1px solid var(--line); border-left:4px solid var(--clay); border-radius:10px; padding:18px 22px; font-size:0.88rem; color:var(--text-muted); margin:40px 0; }
+  .draft-banner strong{ color:var(--ink); }
+
+  section{ padding-bottom:90px; }
+  .post-grid{ display:grid; grid-template-columns:1fr 1fr; gap:2px; background:var(--line); border:1px solid var(--line); border-radius:16px; overflow:hidden; }
+  .post-card{ background:var(--paper); padding:34px; display:flex; flex-direction:column; gap:14px; transition:background .2s ease; }
+  .post-card:hover{ background:var(--paper-warm); }
+  .post-meta{ font-size:0.72rem; color:var(--ochre); }
+  .post-title{ font-family:'Fraunces', serif; font-weight:500; font-size:1.3rem; color:var(--ink); line-height:1.3; }
+  .post-excerpt{ font-size:0.9rem; color:var(--text-muted); }
+  .post-read{ font-size:0.82rem; color:var(--clay); font-weight:600; margin-top:auto; }
+  @media (max-width:860px){ .post-grid{ grid-template-columns:1fr; } }
+
+  footer{ padding:40px 0; }
+  .foot-row{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; border-top:1px solid var(--line); padding-top:28px; }
+  .foot-links{ display:flex; gap:22px; flex-wrap:wrap; font-size:0.83rem; color:var(--text-muted); }
+  .foot-links a:hover{ color:var(--clay); }
+  .foot-copy{ font-size:0.78rem; color:var(--text-muted); }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <a href="kincare-connect-redesign.html" class="logo">
+      <svg class="logo-mark" viewBox="0 0 28 28" fill="none">
+        <path d="M4 8 Q14 2 24 8 Q14 14 4 8Z" stroke="#C57F2E" stroke-width="1.4"/>
+        <path d="M4 20 Q14 14 24 20 Q14 26 4 20Z" stroke="#3F6B4F" stroke-width="1.4"/>
+        <path d="M4 14 Q14 8 24 14" stroke="#A63D2F" stroke-width="1.4" fill="none"/>
+      </svg>
+      KinCare Connect
+    </a>
+    <div class="nav-links">
+      <a href="kincare-for-families.html">For Families</a>
+      <a href="kincare-for-childminders.html">For Childminders</a>
+      <a href="kincare-blog.html" class="current">Blog</a>
+      <a href="kincare-waitlist.html" class="nav-cta">Join Waitlist</a>
+    </div>
+  </nav>
+</header>
+
+<section class="page-hero" style="padding-bottom:60px;">
+  <div class="wrap">
+    <span class="eyebrow mono">Updates</span>
+    <h1>Notes from <em>building</em> KinCare Connect.</h1>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="draft-banner">
+      <strong>Placeholder content.</strong> These four posts are examples of the tone and topics worth covering — not real published content. Replace with genuine posts (written by Lubna, in her own voice) before this page goes live. Fabricated posts published as real would damage credibility with both families and, if referenced in visa evidence, with a caseworker.
+    </div>
+    <div class="post-grid">
+      <div class="post-card">
+        <span class="post-meta mono">Founder story</span>
+        <div class="post-title">Why We Started KinCare Connect</div>
+        <div class="post-excerpt">The search that led to building a platform I wished existed when I needed it most.</div>
+        <div class="post-read">Read the full story →</div>
+      </div>
+      <div class="post-card">
+        <span class="post-meta mono">Product</span>
+        <div class="post-title">What "Culturally Matched" Actually Means</div>
+        <div class="post-excerpt">Beyond a search filter — how we're thinking about language, heritage, and care philosophy.</div>
+        <div class="post-read">Read more →</div>
+      </div>
+      <div class="post-card">
+        <span class="post-meta mono">Community</span>
+        <div class="post-title">Meet the First Childminders Joining Us</div>
+        <div class="post-excerpt">Introducing early-access providers building their client base within their own community.</div>
+        <div class="post-read">Read more →</div>
+      </div>
+      <div class="post-card">
+        <span class="post-meta mono">Building in public</span>
+        <div class="post-title">An Update from Birmingham</div>
+        <div class="post-excerpt">What's been built so far, what's next, and how the waitlist is shaping our launch plan.</div>
+        <div class="post-read">Read more →</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-row">
+    <a href="kincare-connect-redesign.html" class="logo" style="font-size:1.05rem;">KinCare Connect</a>
+    <div class="foot-links">
+      <a href="kincare-faq.html">FAQ</a>
+      <a href="kincare-trust-safety.html">Trust &amp; Safety</a>
+      <a href="kincare-press-kit.html">Press</a>
+      <a href="kincare-privacy-terms.html">Privacy &amp; Terms</a>
+    </div>
+    <div class="foot-copy">© 2026 KinCare Connect Ltd.</div>
+  </div>
+</footer>
+
+<div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Cookie consent">
+  <p>We use essential cookies to make this site work, and would like your consent for optional analytics cookies. <a href="kincare-privacy-terms.html#p7">Learn more</a></p>
+  <div class="cookie-actions">
+    <button id="cookie-decline" class="cookie-btn-ghost">Essential only</button>
+    <button id="cookie-accept" class="cookie-btn-primary">Accept all</button>
+  </div>
+</div>
+<style>
+.cookie-banner{ position:fixed; left:20px; right:20px; bottom:20px; max-width:560px; margin:0 auto; background:#16223E; color:#FBF3E7; border-radius:16px; padding:22px 24px; box-shadow:0 20px 50px rgba(0,0,0,0.3); z-index:999; display:none; gap:16px; flex-wrap:wrap; align-items:center; justify-content:space-between; font-family:'Work Sans',sans-serif; }
+.cookie-banner.show{ display:flex; }
+.cookie-banner p{ font-size:0.85rem; margin:0; flex:1; min-width:200px; color:rgba(251,243,231,0.85); }
+.cookie-banner a{ color:#C57F2E; text-decoration:underline; }
+.cookie-actions{ display:flex; gap:10px; flex-shrink:0; }
+.cookie-btn-ghost, .cookie-btn-primary{ border:none; border-radius:100px; padding:10px 18px; font-size:0.82rem; font-weight:600; cursor:pointer; font-family:'Work Sans',sans-serif; }
+.cookie-btn-ghost{ background:transparent; border:1px solid rgba(251,243,231,0.3); color:#FBF3E7; }
+.cookie-btn-primary{ background:#C57F2E; color:#16223E; }
+</style>
+<script>
+(function(){
+  var choice = localStorage.getItem('kincare-cookie-consent');
+  var banner = document.getElementById('cookie-banner');
+  if(!choice){ banner.classList.add('show'); }
+  document.getElementById('cookie-accept').addEventListener('click', function(){
+    localStorage.setItem('kincare-cookie-consent','all');
+    banner.classList.remove('show');
+  });
+  document.getElementById('cookie-decline').addEventListener('click', function(){
+    localStorage.setItem('kincare-cookie-consent','essential');
+    banner.classList.remove('show');
+  });
+})();
+</script>
+
+</body>
+</html>
