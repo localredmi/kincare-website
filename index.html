@@ -512,8 +512,8 @@
     <span class="eyebrow mono" style="justify-content:center; color:#E3A85C;">Be part of something new</span>
     <h2>Help shape the future of diaspora childcare.</h2>
     <p>Early families and childminders get first access and a direct say in how KinCare Connect is built.</p>
-    <form class="waitlist-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='You\'re on the list ✓';">
-      <input type="email" placeholder="you@email.com" required>
+    <form class="waitlist-form" id="heroWaitlistForm" action="https://formspree.io/f/xvkpapaq" method="POST">
+      <input type="email" name="email" placeholder="you@email.com" required>
       <button type="submit">Join waitlist</button>
     </form>
     <div class="cta-fine">No spam. Just an invite when we launch in your area.</div>
@@ -565,6 +565,34 @@
         toggle.setAttribute('aria-expanded', isOpen);
       });
     }
+  })();
+
+  // waitlist form — submit via AJAX so we can show inline confirmation
+  (function(){
+    var form = document.getElementById('heroWaitlistForm');
+    if(!form) return;
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var btn = form.querySelector('button');
+      var originalText = btn.textContent;
+      btn.textContent = 'Sending...';
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(function(response){
+        if(response.ok){
+          btn.textContent = "You're on the list ✓";
+          form.reset();
+        } else {
+          btn.textContent = 'Something went wrong — try again';
+          setTimeout(function(){ btn.textContent = originalText; }, 3000);
+        }
+      }).catch(function(){
+        btn.textContent = 'Something went wrong — try again';
+        setTimeout(function(){ btn.textContent = originalText; }, 3000);
+      });
+    });
   })();
 </script>
 

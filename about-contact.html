@@ -214,11 +214,11 @@
         <div class="contact-item"><span class="label mono">Location</span><span class="val">Birmingham, United Kingdom</span></div>
       </div>
     </div>
-    <form onsubmit="event.preventDefault(); this.querySelector('.submit-btn').textContent='Sent ✓ We\'ll reply within 48 hours';">
-      <div class="form-field"><label>Full name</label><input type="text" required></div>
-      <div class="form-field"><label>Email address</label><input type="email" required></div>
-      <div class="form-field"><label>Subject</label><input type="text"></div>
-      <div class="form-field"><label>Message</label><textarea required></textarea></div>
+    <form id="contactForm" action="https://formspree.io/f/mzeprpgb" method="POST">
+      <div class="form-field"><label>Full name</label><input type="text" name="name" required></div>
+      <div class="form-field"><label>Email address</label><input type="email" name="email" required></div>
+      <div class="form-field"><label>Subject</label><input type="text" name="subject"></div>
+      <div class="form-field"><label>Message</label><textarea name="message" required></textarea></div>
       <button type="submit" class="submit-btn">Send message →</button>
     </form>
   </div>
@@ -249,6 +249,33 @@
         toggle.setAttribute('aria-expanded', isOpen);
       });
     }
+  })();
+
+  (function(){
+    var form = document.getElementById('contactForm');
+    if(!form) return;
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var btn = form.querySelector('.submit-btn');
+      var originalText = btn.textContent;
+      btn.textContent = 'Sending...';
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(function(response){
+        if(response.ok){
+          btn.textContent = "Sent ✓ We'll reply within 48 hours";
+          form.reset();
+        } else {
+          btn.textContent = 'Something went wrong — try again';
+          setTimeout(function(){ btn.textContent = originalText; }, 3000);
+        }
+      }).catch(function(){
+        btn.textContent = 'Something went wrong — try again';
+        setTimeout(function(){ btn.textContent = originalText; }, 3000);
+      });
+    });
   })();
 </script>
 
