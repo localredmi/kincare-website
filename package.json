@@ -1,0 +1,15 @@
+{
+  "name": "kincare-website",
+  "version": "1.0.0",
+  "description": "KinCare Connect - Childcare platform for African diaspora families",
+  "scripts": {
+    "dev": "npx serve .",
+    "build": "echo 'Static site - no build step required'"
+  },
+  "keywords": ["childcare", "kincare", "static-site"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@vercel/analytics": "^1.1.1"
+  }
+}
