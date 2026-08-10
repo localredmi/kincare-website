@@ -34,7 +34,17 @@
   .nav-links a:hover::after{ width:100%; }
   .nav-cta{ background:var(--ink); color:var(--paper) !important; padding:11px 22px; border-radius:100px; font-weight:500; font-size:0.9rem; transition:background .2s ease, transform .2s ease; }
   .nav-cta:hover{ background:var(--clay); transform:translateY(-1px); }
-  @media (max-width:860px){ .nav-links{ display:none; } }
+
+  .nav-toggle{ display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:8px; z-index:60; }
+  .nav-toggle span{ width:22px; height:2px; background:var(--ink); border-radius:2px; transition:all .25s ease; }
+  .nav-toggle.open span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+  .nav-toggle.open span:nth-child(2){ opacity:0; }
+  .nav-toggle.open span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+  .mobile-menu{ display:none; flex-direction:column; position:fixed; top:69px; left:0; right:0; background:var(--paper); border-bottom:1px solid var(--line); padding:12px 32px 24px; z-index:55; box-shadow:0 12px 30px rgba(0,0,0,0.1); }
+  .mobile-menu.open{ display:flex; }
+  .mobile-menu a{ font-size:1rem; font-weight:500; color:var(--text-dark); padding:14px 0; border-bottom:1px solid var(--line); }
+  .mobile-menu a:last-child{ border-bottom:none; }
+  @media (max-width:860px){ .nav-links{ display:none; } .nav-toggle{ display:flex; } }
 
   .page-hero{ background:var(--ink); color:var(--text-cream); padding:90px 0 70px; position:relative; overflow:hidden; }
   .page-hero::before{ content:''; position:absolute; inset:0; background:radial-gradient(circle at 20% 20%, rgba(197,127,46,0.16), transparent 45%); }
@@ -52,7 +62,6 @@
   .section-head h2 em{ color:var(--clay); font-style:italic; }
   .section-head p{ margin-top:14px; color:var(--text-muted); }
 
-  /* filter mockup */
   .filter-mock{ background:var(--ink); border-radius:20px; padding:38px; color:var(--paper); }
   .filter-mock .field-label{ font-size:0.72rem; color:var(--ochre); margin-bottom:10px; display:block; }
   .chip-row{ display:flex; flex-wrap:wrap; gap:10px; margin-bottom:26px; }
@@ -63,7 +72,6 @@
   .mock-result .name{ font-family:'Fraunces', serif; font-size:1.05rem; }
   .mock-result .meta{ font-size:0.82rem; color:rgba(251,243,231,0.6); margin-top:2px; }
 
-  /* timeline */
   .timeline{ position:relative; padding-left:44px; }
   .timeline::before{ content:''; position:absolute; left:13px; top:6px; bottom:6px; width:2px; background:linear-gradient(var(--ochre),var(--leaf),var(--clay)); }
   .t-step{ position:relative; padding-bottom:44px; }
@@ -108,7 +116,7 @@
 
 <header>
   <nav class="nav">
-    <a href="kincare-connect-redesign.html" class="logo">
+    <a href="index.html" class="logo">
       <svg class="logo-mark" viewBox="0 0 28 28" fill="none">
         <path d="M4 8 Q14 2 24 8 Q14 14 4 8Z" stroke="#C57F2E" stroke-width="1.4"/>
         <path d="M4 20 Q14 14 24 20 Q14 26 4 20Z" stroke="#3F6B4F" stroke-width="1.4"/>
@@ -117,12 +125,22 @@
       KinCare Connect
     </a>
     <div class="nav-links">
-      <a href="kincare-for-families.html" class="current">For Families</a>
-      <a href="kincare-for-childminders.html">For Childminders</a>
-      <a href="#">About</a>
-      <a href="#waitlist" class="nav-cta">Join Waitlist</a>
+      <a href="families.html" class="current">For Families</a>
+      <a href="childminders.html">For Childminders</a>
+      <a href="about-contact.html">About</a>
+      <a href="kincare-waitlist.html" class="nav-cta">Join Waitlist</a>
     </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="families.html">For Families</a>
+    <a href="childminders.html">For Childminders</a>
+    <a href="about-contact.html">About</a>
+    <a href="kincare-waitlist.html">Join Waitlist</a>
+  </div>
 </header>
 
 <section class="page-hero" style="padding-bottom:70px;">
@@ -249,13 +267,13 @@
   <div class="wrap cta-inner">
     <h2>Ready to find care that fits?</h2>
     <p>Join the waitlist and be first to know when KinCare Connect launches near you.</p>
-    <a href="#" class="btn-primary">Join the waitlist →</a>
+    <a href="kincare-waitlist.html" class="btn-primary">Join the waitlist →</a>
   </div>
 </section>
 
 <footer>
   <div class="wrap foot-row">
-    <a href="kincare-connect-redesign.html" class="logo" style="font-size:1.05rem;">KinCare Connect</a>
+    <a href="index.html" class="logo" style="font-size:1.05rem;">KinCare Connect</a>
     <div class="foot-links">
       <a href="kincare-faq.html">FAQ</a>
       <a href="kincare-trust-safety.html">Trust &amp; Safety</a>
@@ -272,6 +290,17 @@
       btn.parentElement.classList.toggle('open');
     });
   });
+  (function(){
+    var toggle = document.getElementById('navToggle');
+    var menu = document.getElementById('mobileMenu');
+    if(toggle && menu){
+      toggle.addEventListener('click', function(){
+        var isOpen = menu.classList.toggle('open');
+        toggle.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', isOpen);
+      });
+    }
+  })();
 </script>
 
 <div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Cookie consent">
